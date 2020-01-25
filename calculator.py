@@ -2,19 +2,21 @@ from tkinter import *
 
 
 def cole(src, side):
-    pass
-
+    appObj = Frame(src, borderwidth=4, bd=2, bg="#cccccc")
+    appObj.pack(side=side, expand=YES, fill=BOTH)
+    return appObj
 
 def button(src, side, text, command=None):
-   pass
-
+    appObj = Button(src, text=text, command=command)
+    appObj.pack(side=side, expand=YES, fill=BOTH)
+    return appObj
 
 class app(Frame):
     def __init__(self, root=Tk(), width=364, height=425):
         Frame.__init__(self)
         self.option_add("*Font", 'arial')
         self.pack(expand=YES, fill=BOTH)
-        self.master.title("Simple Calculator")
+        self.master.title("Calculator")
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         x = (screen_width / 2) - (width / 2)
@@ -45,8 +47,10 @@ class app(Frame):
                                    lambda appObj=display, s=" %s " % fEquals: appObj.set(appObj.get() + s))
 
     def result(self, display):
-        try: pass
-        except: pass
+        try:
+            display.set(eval(display.get()))
+        except:
+            display.set("UNDEFINED")
 
 
 
